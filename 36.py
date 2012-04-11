@@ -1,7 +1,7 @@
 # The neat thing about this code is that I am not converting to strings anywhere to check palindrome-ness.
 # All the arithmetic is integer, so could easily port to C, and should be pretty snappy.
 
-def ispal(num,base):
+def is_palindrome(num,base):
    nn = num
    rn = 0
    while (nn > 0) :
@@ -15,8 +15,8 @@ def ispal(num,base):
 
 total = 0
 for i in xrange(1,1000000):
-  if ispal(i,10):
-    if ispal(i,2):
+  if is_palindrome(i,10):
+    if is_palindrome(i,2):
       total += i
       print i
 
