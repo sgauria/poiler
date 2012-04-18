@@ -1,18 +1,19 @@
-cache = {}
+from poiler_common import *
+#cache = {}
 
+@memoize_fast_1_arg
 def count_steps(n):
-  global cache
+  #global cache
   #print "cs", n
-  s = 0;
+  #if (n in cache):
+  #  s = cache[n]
   if n == 1:
     s = 1
-  elif (n in cache):
-    s = cache[n]
   elif (n % 2 == 0):
     s = (1 + count_steps(n/2))
   else :
     s = (1 + count_steps((3*n) + 1))
-  cache[n] = s
+  #cache[n] = s
   return s
 
 N = 1000000

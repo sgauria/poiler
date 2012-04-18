@@ -1,3 +1,6 @@
+#from poiler_common import *
+
+#@memoize_fast_args_only
 def construct_sums(l_coins, total):
   my_coin = l_coins[0]
   if (len(l_coins) == 1):
