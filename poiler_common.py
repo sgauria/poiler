@@ -3,6 +3,7 @@
 ################
 # MEMOIZATION  #
 ################
+# 14.py is a good testcase for comparing memoization versions.
 # works, but really slow compared to hand-done memoization because of pickling.
 # http://pko.ch/2008/08/22/memoization-in-python-easier-than-what-it-should-be/
 import functools
