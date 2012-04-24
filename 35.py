@@ -1,28 +1,16 @@
 def seive_of_E(n):
-  l = [1]*n # All numbers >=2  are prime-candidates
-  l[0] = l[1] = 0
-  p = 2 # start from 2
-  while (p*p < n):
-    #print l
-    #print p
-    m = 2*p
-    while (m < n):
+  l = [0,0]+([1]*(n-2))		    # All numbers >=2  are prime-candidates
+  p = 2				    # start from 2
+  while (p*p < n):		    # Any composite number < n should have one factor < sqrt(n) 
+    for m in xrange(2*p,n,p):	    # Mark all multiples of the current prime as composite.
       l[m] = 0
-      m += p 
-    p = p + 1 + l[p+1:].index(1)
+    p = p + 1 + l[p+1:].index(1)    # next prime
   return l
-
-
-#print seive_of_E(1000)
 
 N = 1000000
 is_prime = seive_of_E(N)
-#print is_prime.count(1)
 
-lprimes = []
-for i in xrange(N):
-  if (is_prime[i]):
-    lprimes.append(i)
+lprimes = [n for (n,is_p) in enumerate(is_prime) if is_p == 1]
 
 ccount = 0
 for p in lprimes:
