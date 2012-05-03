@@ -1,4 +1,11 @@
-fm = open('matrix.txt','r')
+import sys
+
+if len (sys.argv) >= 2:
+  fname = sys.argv[1]
+else :
+  fname = 'matrix.txt'
+
+fm = open(fname,'r')
 mlines = fm.readlines()
 matrix = [map(int,l.split(',')) for l in mlines]
 fm.close()
