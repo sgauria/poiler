@@ -12,7 +12,7 @@ for p in range(1,N+1):
     for a in range(1,s):
         for b in range(a,s):
             c = p - a - b
-            if (b < c):
+            if (c > b):
                 if (c < s):
                     if (a*a + b*b == c*c):
                         count += 1
@@ -26,3 +26,5 @@ for p in range(1,N+1):
 print (maxp, maxcount)
 c2 = time.clock()                
 print (c2-c1)
+
+# TODO : This runs in 17 seconds, but need to tighten all the ranges and make it run faster.
