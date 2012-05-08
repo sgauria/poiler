@@ -7,8 +7,9 @@
 # works, but really slow compared to hand-done memoization because of pickling.
 # http://pko.ch/2008/08/22/memoization-in-python-easier-than-what-it-should-be/
 import functools
-import cPickle
-def memoize(fctn):
+try:
+  import cPickle
+  def memoize(fctn):
         memory = {}
         @functools.wraps(fctn)
         def memo(*args,**kwargs):
@@ -19,6 +20,8 @@ def memoize(fctn):
         if memo.__doc__:
             memo.__doc__ = "\n".join([memo.__doc__,"This function is memoized."])
         return memo
+except ImportError:
+  pass
 
 def memoize_fast_args_only(fctn):
         memory = {}
@@ -35,13 +38,13 @@ def memoize_fast_1_arg(fctn):
         memory = {}
         @functools.wraps(fctn)
         def memo(a):
-	    haxh = a
-	    if haxh in memory:
-	      return memory[haxh]
-	    else :
-	      result       = fctn(a)
-	      memory[haxh] = result
-	      return result
+            haxh = a
+            if haxh in memory:
+              return memory[haxh]
+            else :
+              result       = fctn(a)
+              memory[haxh] = result
+              return result
         return memo
  
 
