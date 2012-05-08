@@ -9,7 +9,7 @@ for i in range(9):
     n = int(s)
     if is_prime(n):
       print n
-      #exit(0)
+      exit(0)
 
 # I first tried using seive of Eratosthenes for this, it turns out that 
 # using direct prime checks is more efficient since we are only testing a
