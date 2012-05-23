@@ -110,3 +110,29 @@ def is_prime(n) :
             return False
     return True
 
+def prime_factor_candidates(n) :
+    if (n <= 1):
+        return
+    yield 2
+    if (n <= 2):
+        return
+    for i in range(3,n+1,2):
+        yield i
+    return
+              
+def factorize(n):
+    if (n > 3):
+        top = int(min(n, int(math.sqrt(n))) + 1)
+        p = prime_factor_candidates(top)
+        for i in p:
+            count = 0
+            while (n % i == 0):
+                count += 1
+                n = int(n/i)
+            if (count > 0) :
+                yield (i,count)
+        if (n != 1):    
+            yield (n,1)
+    else :
+        yield (n,1)
+
