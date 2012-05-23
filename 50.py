@@ -7,19 +7,21 @@ else :
   N = 1000000
 
 is_prime = seive_of_E(N)
-#print "is_prime ready"
 
 primes = []
+cpsums  = []
+cpsum = 0
 for i in xrange(N):
   if is_prime[i]:
     primes.append(i)
+    cpsum += i
+    cpsums.append(cpsum)
 lp = len(primes)
-#print "primes ready"
 
 pmax = imax = szmax = 0
 for sz in xrange(2,lp):
   for i in xrange(0,lp+1-sz):
-    pc = sum(primes[i:i+sz])
+    pc = cpsums[i+sz] - cpsums[i]   #  ==  sum(primes[i:i+sz])
     if pc >= N :
 	break # Larger i's will only exceed N by more.
     elif is_prime[pc]:
