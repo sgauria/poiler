@@ -10,7 +10,7 @@ def piles(n,mss):
     count = 1
   else :
     for i in xrange(1,min(n,mss)+1):
-      count += piles(n-i,i)
+      count += piles(n-i,min(n-i,i))
   #print "piles (",n,mss,") = ",count
   return count
 
@@ -29,4 +29,6 @@ while True:
       print i, p
       break
   i += 1
+  #if i == 500:
+  #  break
 
