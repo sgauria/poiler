@@ -8,19 +8,24 @@ def piles(n,mss):
     count = 1
   elif mss == 1:
     count = 1
+  elif mss == 2:
+    count = int(n/2) + 1
   else :
     for i in xrange(1,min(n,mss)+1):
       count += piles(n-i,min(n-i,i))
   #print "piles (",n,mss,") = ",count
   return count
 
-#print piles(5,5)
+# Check our fn before proceeding.
+assert piles(5,5) == 7
 
 #for i in range(20):
 #  print i,piles(i,i)
+#exit(0)
 
 i = 1
 while True:
+  i += 1
   p = piles(i,i)
   if p % 10 == 0:
     print i, p
@@ -28,7 +33,6 @@ while True:
       print "======"
       print i, p
       break
-  i += 1
   #if i == 500:
   #  break
 
