@@ -11,13 +11,17 @@ root2 = sqrt(2)
 b = 2
 bp=np=1
 
-print "blue,\tred,\ttotal"
+print "%15s %15s %15s %15s"%("blue", "total", "blue ratio", "total ratio")
 while True :
   n = int(floor(b*root2))
   if (2*b*(b-1)) == (n*(n-1)):
-    print b, n, (1.0*b/bp), (1.0*n/np)
+    print "%15d %15d %15.10f %15.10f"%(b, n, (1.0*b/bp), (1.0*n/np))
+    if n > 1000000000000:
+      break 
+    # The solution seem to form a geometric-ish series. No idea why.
+    # While converging, the ratio does increase with every step, so we can be sure we are not overshooting.
+    bjump = b*b/bp 
     bp = b
     np = n
-    if n > 1000000:
-      break 
+    b  = bjump
   b += 1
