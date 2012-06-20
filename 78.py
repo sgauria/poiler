@@ -1,4 +1,4 @@
-from poiler_common import memoize_fast_args_only
+from poiler_common import memoize_fast_args_only, factorize
 
 @memoize_fast_args_only
 def piles(n,mss):
@@ -19,20 +19,15 @@ def piles(n,mss):
 # Check our fn before proceeding.
 assert piles(5,5) == 7
 
-#for i in range(20):
-#  print i,piles(i,i)
-#exit(0)
-
-i = 1
+i = 0
 while True:
   i += 1
   p = piles(i,i)
-  if p % 10 == 0:
+  print i, p #, list(factorize(p))
+  if p % 1000000 == 0:
+    print "======"
     print i, p
-    if p % 1000000 == 0:
-      print "======"
-      print i, p
-      break
-  #if i == 500:
-  #  break
+    break
+  if i == 500:
+    break
 
