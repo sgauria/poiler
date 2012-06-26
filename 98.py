@@ -94,3 +94,9 @@ for ap in anagram_pairs:
 
 print "======"
 print max(map(int, ap_squares))
+
+# Notes based on reading the threads :
+# My code is a bit slow because I precalculate a lot of stuff and store it in
+# lists. This way I am possibly doing some more calculations than strictly
+# necessary. Putting it all in nested loops might be a little bit faster. Not
+# that 1.2 seconds runtime actually is perceptibly slow.
