@@ -26,7 +26,7 @@ x = []
 for i in range(N):
   x.append(random.randint(0,5000))
 
-# x = [51,49,8,7,6] # Small exampled
+# x = [51,49,8,7,6] # Small example
 
 y,z = array_partition(x)
 
