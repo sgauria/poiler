@@ -1,20 +1,21 @@
 # I assume all line equations to be of the form
-# y - sx + k = 0
-#  s is the slope
-#  -k is the y intercept
-#  k is the evaluation of the equation at (0,0)
+# ax + by + c = 0
 
 
-def line_slope(x0,y0,x1,y1):
-  s = 1.0*(y1-y0)/(x1-x0)
-  return s
+def line_params(x0,y0,x1,y1):
+  if (x0 != x1):
+    a = 1.0*(y0-y1)/(x1-x0)
+    b = 1.0 
+    c = 1.0*(x0*y1-x1*y0)/(x1-x0)
+  else :
+    a = 1.0
+    b = 0.0
+    c = x0
+  return (a,b,c)
 
-def line_y_intercept(x0,y0,x1,y1):
-  k = 1.0*(x0*y1-x1*y0)/(x1-x0)
-  return k
 
-def eval_line_at_point(s,k,x,y):
-  e = y - s*x + k
+def eval_line_at_point(a,b,c,x,y):
+  e = a*x + b*y + c
   return e
 
 def same_sign(a,b):
@@ -28,22 +29,16 @@ def same_sign(a,b):
 def triangle_contains_origin(x0,y0,x1,y1,x2,y2):
   #print x0,y0,x1,y1,x2,y2
 
-  s0 = line_slope(x0,y0,x1,y1)
-  s1 = line_slope(x1,y1,x2,y2)
-  s2 = line_slope(x2,y2,x0,y0)
-  #print s0,s1,s2
+  (a0,b0,c0) = line_params(x0,y0,x1,y1)
+  (a1,b1,c1) = line_params(x1,y1,x2,y2)
+  (a2,b2,c2) = line_params(x2,y2,x0,y0)
 
-  k0 = line_y_intercept(x0,y0,x1,y1)
-  k1 = line_y_intercept(x1,y1,x2,y2)
-  k2 = line_y_intercept(x2,y2,x0,y0)
-  #print k0,k1,k2
-
-  e0 = eval_line_at_point(s0,k0,x2,y2)
-  e1 = eval_line_at_point(s1,k1,x0,y0)
-  e2 = eval_line_at_point(s2,k2,x1,y1)
+  e0 = eval_line_at_point(a0,b0,c0,x2,y2)
+  e1 = eval_line_at_point(a1,b1,c1,x0,y0)
+  e2 = eval_line_at_point(a2,b2,c2,x1,y1)
   #print e0,e1,e2
 
-  if same_sign(e0,k0) and same_sign(e1,k1) and same_sign(e2,k2):
+  if same_sign(e0,c0) and same_sign(e1,c1) and same_sign(e2,c2):
     return True
   else :
     return False
