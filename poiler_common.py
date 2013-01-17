@@ -136,3 +136,11 @@ def factorize(n):
     else :
         yield (n,1)
 
+########
+# MISC #
+########
+
+# To test if different numbers have the same digits.
+def sorted_digits(n):
+  return int("".join(sorted(list(str(n)))))
+
