@@ -154,3 +154,13 @@ def nCr(n,r):
   for i in range(1,(n-lr)+1):
     result /= i
   return result
+
+def digital_sum(n):
+  sum = 0
+  for d in str(n):
+    sum += int(d)
+  return sum
+
+sum_of_digits = digital_sum
+digit_sum     = digital_sum
+

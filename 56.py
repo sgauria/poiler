@@ -1,4 +1,4 @@
-def digitial_sum(n):
+def digital_sum(n):
   sum = 0
   for d in str(n):
     sum += int(d)
@@ -9,7 +9,7 @@ maxds = maxa = maxb = 0
 
 for a in range(1,N+1):
   for b in range(1,N+1):
-    ds = digitial_sum(a**b)
+    ds = digital_sum(a**b)
     if (ds > maxds) :
       maxds = ds
       maxa = a
