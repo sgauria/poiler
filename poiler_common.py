@@ -144,3 +144,13 @@ def factorize(n):
 def sorted_digits(n):
   return int("".join(sorted(list(str(n)))))
 
+# nCr : number of possible combinations of r things selected from a set of n things.
+def nCr(n,r):
+  assert (0 <= r <= n)
+  lr = r if (r > (n-r)) else (n-r) # larger of r and n-r
+  result = 1
+  for i in range(lr+1,n+1):
+    result *= i
+  for i in range(1,(n-lr)+1):
+    result /= i
+  return result
