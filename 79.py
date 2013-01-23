@@ -12,7 +12,7 @@ char_stats = {}
 with open(fname,'r') as fkl :
   keylog_lines  = fkl.readlines()
   for kll in keylog_lines:
-    kllc = kll[:-1]
+    kllc = kll.strip()
     for pos,c in enumerate(kllc) :
       if c not in char_stats:
 	char_stats[c] = {}

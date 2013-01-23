@@ -140,6 +140,16 @@ def factorize(n):
 # MISC #
 ########
 
+def digits(n):
+  #return map(int, list(str(n)))
+  r = []
+  x = n
+  while x > 0:
+    x, digit = divmod(x, 10)
+    r.append(digit)
+  return r
+
+
 # To test if different numbers have the same digits.
 def sorted_digits(n):
   return int("".join(sorted(list(str(n)))))
