@@ -174,3 +174,27 @@ def digital_sum(n):
 sum_of_digits = digital_sum
 digit_sum     = digital_sum
 
+# The neat thing about this code is that I am not converting to strings anywhere to check palindrome-ness.
+def reverse_num(num,base=10):
+   nn = num
+   rn = 0
+   while (nn > 0) :
+       digit = nn % base 
+       nn = (nn - digit) / base
+       rn = rn*base + digit
+   return rn
+
+def num_is_palindrome(num,base=10):
+   rn = reverse_num(num,base)
+   if (rn == num) :
+       return True
+   else :
+       return False
+
+def all_subsets(myset, min_size=1, max_size=float('Inf')):
+  if max_size > len(myset):
+    max_size = len(myset)
+  for l in range(min_size, max_size+1):
+    for c in itertools.combinations(myset, l):
+      yield c
+
