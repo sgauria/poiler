@@ -11,16 +11,11 @@ else :
 NCP = 3 # characters in passkey
 
 def possible_keys():
-  for i in range(ord('a'), ord('z')):
-    for j in range(ord('a'), ord('z')):
-      for k in range(ord('a'), ord('z')):
-	key = [i,j,k]
-	yield key
+  for key in itertools.product(range(ord('a'), ord('z')+1), repeat=NCP):
+    yield key
 
 with open(fname,'r') as fp :
-  mlines = fp.readlines()
-  crypted = mlines[0].split(',')
-  crypted = map(int, crypted)
+  crypted = eval(fp.read())
   for pkey in possible_keys():
     decrypted = []
     ptr = 0
