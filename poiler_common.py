@@ -198,3 +198,17 @@ def all_subsets(myset, min_size=1, max_size=float('Inf')):
     for c in itertools.combinations(myset, l):
       yield c
 
+@memoize_fast_args_only
+def hcf(n1,n2):
+  """ Calculate Highest common factor of n1 and n2. n1 must be less than n2."""
+  assert n1 < n2
+
+  q,r = divmod(n2,n1)
+  #print n1, n2, q, r
+  if r == 0:
+    return n1
+  else :
+    return hcf(r,n1)
+
+assert hcf(64,72) == 8
+
