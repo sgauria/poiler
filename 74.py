@@ -11,7 +11,7 @@ def chain_length (n):
       chain.append(x)
   return len(chain)
 
-# Manuals memoization. Need to fill in the loops manually beforehand. Runs really fast after that.
+# Manual memoization. Need to fill in the loops manually beforehand. Runs really fast after that.
 known_lengths = {
     1      : 1,
     2      : 1,
