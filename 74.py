@@ -1,16 +1,5 @@
 from poiler_common import *
 
-#            0 1 2 3  4   5   6    7     8      9
-factorial = [1,1,2,6,24,120,720,5040,40320,362880]
-
-@memoize_fast_1_arg
-def sum_of_factorials(n):
-  if (n < 10):
-    return factorial[n]
-  else :
-    return (factorial[n%10] + sum_of_factorials(int(n/10)))
-
-
 def chain_length (n):
   x = n
   chain = [x]
@@ -20,35 +9,56 @@ def chain_length (n):
       break
     else :
       chain.append(x)
-  #print chain
   return len(chain)
 
-# @memoize_fast_1_arg
-def chain_length_recursive (n, chain):
-  if n in chain :
-    l = len(chain)
+# Manuals memoization. Need to fill in the loops manually beforehand. Runs really fast after that.
+known_lengths = {
+    1      : 1,
+    2      : 1,
+    145    : 1,
+    40585  : 1,
+
+    871    : 2,
+    45361  : 2,
+
+    872    : 2,
+    45362  : 2,
+
+    169    : 3,
+    363601 : 3,
+    1454   : 3,
+
+    }
+
+def chain_length_recursive (n):
+  if n in known_lengths :
+    l = known_lengths[n]
     return l
   else :
-    chain.append(n)
     x = sum_of_factorials(n)
-    clr = chain_length_recursive(x, chain)
+    if (x == n):
+      clr = 1
+    else :
+      clr = chain_length_recursive(x) + 1
+    known_lengths[n] = clr
     return clr
 
-assert (chain_length(3) == 16)
-assert (chain_length_recursive(3, []) == 16)
-#exit(0)
+assert (chain_length          (3) == 16)
+assert (chain_length_recursive(3) == 16)
+assert (chain_length          (4) == 8)
+assert (chain_length_recursive(4) == 8)
 
 # Search till 1 million
 N = 1000000
 count = 0
 
 for i in xrange(1,N):
-  l = chain_length(i)
+  l = chain_length_recursive(i)
   if l == 60 :
     count += 1
-    print i
+    print "*", i
 
 print "==========="
-print count
+print "count = ", count
 
 

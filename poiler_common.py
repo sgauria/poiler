@@ -212,3 +212,13 @@ def hcf(n1,n2):
 
 assert hcf(64,72) == 8
 
+#                      0 1 2 3  4   5   6    7     8      9
+first_10_factorials = [1,1,2,6,24,120,720,5040,40320,362880]
+@memoize_fast_1_arg
+def sum_of_factorials(n):
+  if (n < 10):
+    return first_10_factorials[n]
+  else :
+    return (first_10_factorials[n%10] + sum_of_factorials(int(n/10)))
+
+
