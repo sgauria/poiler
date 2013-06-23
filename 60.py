@@ -6,12 +6,12 @@ def join_numbers(n1,n2):
 
 assert (join_numbers(55,66) == 5566)
 
-NN = [3000]
-M = 5
+NN = [1000]
+M = 4
 
 for N in NN:
   is_prime = seive_of_E(N)
-  lprimes = [n for (n,is_p) in enumerate(is_prime) if is_p == 1]
+  lprimes  = [n for (n,is_p) in enumerate(is_prime) if is_p == 1]
   is_prime = seive_of_E(N*N)
   for c in itertools.combinations(lprimes, M):
     remarkable = 1
