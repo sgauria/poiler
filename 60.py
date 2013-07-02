@@ -81,8 +81,8 @@ if 0 :
   # size 5 - searched till pc = 1327 in 16184s. No result.
   # tried primes till 10 million, but none of them work with (3,7,109,673) & (23,677,311,827)
 
-if 1:
-  MM = 4
+if 0:
+  MM = 5
 
   # Leave out 2 & 5 from list of primes to test as they are trivially incompatible with all other primes (x2, x5 are composite).
   lprimes = [3]
@@ -125,4 +125,44 @@ if 1:
       #print "\r",
   # 5 s for smallest 'remarkable' set of size 4.
   # set of size 5 not found overnight.
+
+if 1:
+  # Leave out 2 & 5 from list of primes to test as they are trivially incompatible with all other primes (x2, x5 are composite).
+  lprimes = [3]
+  compatible = {3 : {3: False}}
+  
+  pc = 5 # pc = prime_candidate
+  while (pc < 10000000) : # True :
+    pc += 2
+    if is_prime(pc):
+      #print pc, "\r",
+      compatible[pc] = {}
+      compatible[pc][pc] = False # Any prime concatenated with itself is a multiple of 10*1
+      for p in lprimes :
+        j1 = join_numbers(p, pc)
+        j2 = join_numbers(pc, p)
+        j1p = is_prime(j1)
+        j2p = is_prime(j2)
+        if j1p and j2p:
+          compatible[p][pc] = True
+          compatible[pc][p] = True
+        else :
+          compatible[p][pc] = False
+          compatible[pc][p] = False
+      for p1 in compatible[pc] :
+        if compatible[pc][p1] :
+          for p2 in compatible[p1]:
+            if compatible[p2][pc] and compatible[p1][p2]:
+              for p3 in compatible[p2]:
+                if compatible[p3][pc] and compatible[p1][p3] and compatible[p2][p3]:
+                  for p4 in compatible[p3]:
+                    if compatible[p4][pc] and compatible[p1][p4] and compatible[p2][p4] and compatible[p3][p4]:
+                      print "*********"
+                      cc = sorted(list((pc,p1,p2,p3,p4)))
+                      print sum(cc), cc
+                      exit(0)
+      lprimes.append(pc)
+  # 0.2 s for set of size 4 with this approach (needs code edit)
+  # set of size 5 found in 37s : 26033 [13, 5197, 5701, 6733, 8389]
+
 
