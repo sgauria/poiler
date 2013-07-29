@@ -91,6 +91,7 @@ def seive_of_E(n):
 # Straight from the discussion of problem 7.
 # Definition of is_prime for n<=0 is bit unclear, but false is convenient here.
 import math
+@memoize_fast_1_arg
 def is_prime(n) :
     if (n <= 1) :  
       return False
@@ -152,7 +153,7 @@ def digits(n):
 
 # To test if different numbers have the same digits.
 def sorted_digits(n):
-  return int("".join(sorted(list(str(n)))))
+  return "".join(sorted(list(str(n))))
 
 # nCr : number of possible combinations of r things selected from a set of n things.
 def nCr(n,r):
