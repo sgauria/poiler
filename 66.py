@@ -1,20 +1,21 @@
 import math
 
+# Doesn't work because of precision issues.
 def solve_D(D):
   """ Solve x^2 - Dy^2 = 1 """
-  sdr = math.sqrt(d)
+  sdr = math.sqrt(D)
   sdi = int(sdr)
   if sdi == sdr :
-    return -1
-  print d
+    return None
   y = 1
   while True :
     xr = math.sqrt(y*y*D+1)
-    #print y, xr
     xi = int(xr)
     if xr == xi :
       return xi
     y += 1
+
+assert (solve_D(13) == 649)    
 
 maxx = maxd = 0;
 
